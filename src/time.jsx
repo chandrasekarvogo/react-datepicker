@@ -22,9 +22,9 @@ export default class Time extends React.Component {
     };
   }
 
-  static calcCenterPosition = (listHeight, centerLiRef) => {
+  static calcCenterPosition = (listWidth, centerLiRef) => {
     return (
-      centerLiRef.offsetTop - (listHeight / 2 - centerLiRef.clientHeight / 2)
+      centerLiRef.offsetLeft - (listWidth / 2 - centerLiRef.clientWidth / 2)
     );
   };
 
@@ -55,12 +55,11 @@ export default class Time extends React.Component {
 
   componentDidMount() {
     // code to ensure selected time will always be in focus within time window when it first appears
-    this.list.scrollTop = Time.calcCenterPosition(
-      this.props.monthRef
-        ? this.props.monthRef.clientHeight - this.header.clientHeight
-        : this.list.clientHeight,
+    this.list.scrollLeft = Time.calcCenterPosition(
+      this.list.clientWidth,
       this.centerLi
     );
+
     if (this.props.monthRef && this.header) {
       this.setState({
         height: this.props.monthRef.clientHeight - this.header.clientHeight

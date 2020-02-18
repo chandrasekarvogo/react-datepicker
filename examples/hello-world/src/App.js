@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import DatePicker from "react-datepicker";
+import DatePicker from "vogo-react-datepicker";
 
-import "react-datepicker/dist/react-datepicker.css";
+// import "react-datepicker/dist/react-datepicker.css";
+import "./datepicker.scss";
 
 class App extends Component {
   state = {
@@ -10,7 +11,14 @@ class App extends Component {
 
   render() {
     const { startDate } = this.state;
-    return <DatePicker selected={startDate} onChange={this.handleChange} />;
+    return (
+      <DatePicker
+        selected={startDate}
+        onChange={this.handleChange}
+        withPortal
+        showTimeSelect
+      />
+    );
   }
 
   handleChange = startDate => {
